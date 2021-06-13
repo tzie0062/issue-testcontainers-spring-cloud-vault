@@ -22,7 +22,7 @@ followed by
 `./init-vault.sh`
 This will start the container and initialize `Vault` with a single secret.
 
-Now either run `mvn clean install` or (from within you IDE) launch `DemoApplicationTests`.
+Now either run `./mvnw clean install` or (from within you IDE) launch `DemoApplicationTests`.
 In the output there will be a line like:
 ```java
 2021-06-13 14:03:56.923  INFO 48059 --- [           main] com.example.demo.DemoApplication         : Got vault-supplied value: foo
@@ -34,5 +34,8 @@ This shows that the value was correctly retrieved from `Vault`.
 `docker compose down`
 in the projects main directory.
 
-Running `mvn clean install` now will yield a failing test and a `Connection Refused` when trying to resolve the secret, which
+`DemoApplicationTests` will launch a `Vault` container and use a `@DynamicPropertySource` to override
+some properties from `application.yml`.
+
+Running `./mvnw clean install` now will yield a failing test and a `Connection Refused` when trying to resolve the secret, which
 shows that the properties added by `@DynamicPropertySource` are not used.
