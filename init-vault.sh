@@ -1,0 +1,1 @@
+docker exec demo-vault /bin/sh -c "export VAULT_ADDR='http://127.0.0.1:8200'; vault login '00000000-0000-0000-0000-000000000000'; vault secrets enable --path foo kv-v2; vault kv put foo/app bar=foo"

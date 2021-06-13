@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    vault:
+      authentication: TOKEN
+      connection-timeout: 5000
+      read-timeout: 15000
+      token: 00000000-0000-0000-0000-000000000000
+      scheme: http
+      application-name: app
+      kv:
+        backend: foo
+      uri: http://localhost:9400
+  config:
+    import: vault://

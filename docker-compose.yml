@@ -1,0 +1,12 @@
+---
+version: "3"
+
+services:
+  vault:
+    image: "vault:${VAULT_VERSION}"
+    hostname: "${VAULT_HOST_AND_CONTAINER_NAME}"
+    container_name: "${VAULT_HOST_AND_CONTAINER_NAME}"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: 00000000-0000-0000-0000-000000000000
+    ports:
+      - 9400:8200
