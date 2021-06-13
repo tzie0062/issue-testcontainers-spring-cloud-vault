@@ -8,12 +8,12 @@ to override properties:
 
 ```java
 @DynamicPropertySource
-static void addProperties(DynamicPropertyRegistry registry){
-	registry.add("spring.cloud.vault.host",()->vaultContainer.getHost());
-	registry.add("spring.cloud.vault.port",()->vaultContainer.getFirstMappedPort());
-	registry.add("spring.cloud.vault.uri",()->"http://"+vaultContainer.getHost()+":"+vaultContainer.getFirstMappedPort());
-	registry.add("spring.cloud.vault.token",()->TOKEN);
-	}
+static void addProperties(DynamicPropertyRegistry registry) {
+   registry.add("spring.cloud.vault.host",()->vaultContainer.getHost());
+   registry.add("spring.cloud.vault.port",()->vaultContainer.getFirstMappedPort());
+   registry.add("spring.cloud.vault.uri",()->"http://"+vaultContainer.getHost()+":"+vaultContainer.getFirstMappedPort());
+   registry.add("spring.cloud.vault.token",()->TOKEN);
+}
 ```
 
 does not work - `Spring Cloud Vault` does not use the added properties.
@@ -42,8 +42,8 @@ This shows that the value was correctly retrieved from `Vault`.
 `docker compose down`
 in the project's main directory.
 
-`DemoApplicationTests` will launch a `Vault` container and use a `@DynamicPropertySource` to override some properties from `application.yml`
-.
+`DemoApplicationTests` will launch a `Vault` container and use a `@DynamicPropertySource` to override some properties from `application.yml`.
+
 
 Running `./mvnw clean install` now will yield a failing test and a `Connection Refused` when trying to resolve the secret, which shows that
 the properties added by `@DynamicPropertySource` are not used.
